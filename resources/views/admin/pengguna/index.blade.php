@@ -27,7 +27,7 @@
                         @foreach ($pengguna as $val)
                         <tr>
                             <td>
-                                <a href="{{ asset('storage/avatar/'.$val->avatar) }}" target="_blank"><img src="{{ asset('storage/avatar/'.$val->avatar) }}" class="img-circle elevation-2" alt="Avatar" width="60vh" height="60vh"></a>
+                                <a href="{{ asset('avatar/'.$val->avatar) }}" target="_blank"><img src="{{ asset('avatar/'.$val->avatar) }}" class="img-circle elevation-2" alt="Avatar" width="60vh" height="60vh"></a>
                             </td>
                             <td>{{ $val->nama }}</td>
                             <td>{{ $val->username }}</td>
