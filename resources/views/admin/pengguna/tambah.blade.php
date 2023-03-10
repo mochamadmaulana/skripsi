@@ -16,7 +16,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="form-group text-center">
-                                <img id="preview-avatar-before-upload" src="{{ asset('storage/avatar/default.jpg') }}" class="img-circle elevation-2 shadow-sm" height="200px" width="200px" alt="avatar">
+                                <img id="preview-avatar-before-upload" src="{{ asset('avatar/default.jpg') }}" class="img-circle elevation-2 shadow-sm" height="200px" width="200px" alt="avatar">
                             </div>
 
                             <div class="form-group text-center">

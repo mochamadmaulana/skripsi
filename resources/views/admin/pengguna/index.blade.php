@@ -42,7 +42,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if($val->username !== auth()->user()->username)
+                                @if($val->username !== auth()->user()->username && $val->username !== 'irwan' && $val->username !== 'firaferista' && $val->username !== 'mochamadmaulana')
                                 <a href="{{ route('admin.pengguna.edit', $val->id) }}" class="btn btn-xs btn-success mr-2 shadow-sm"><i class="far fa-edit"></i> edit</a>
                                 <form action="{{ route('admin.pengguna.destroy', $val->id) }}" method="POST" class="d-inline">
                                     @csrf
