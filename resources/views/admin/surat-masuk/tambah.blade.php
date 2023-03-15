@@ -44,8 +44,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Akses Surat <span class="text-red">*</span></label>
-                        <select name="akses_surat[]" class="form-control @error('akses_surat') is-invalid @enderror" multiple="multiple" id="selectAksesSurat">
+                        <label>Disposisi Surat <span class="text-red">*</span></label>
+                        <select name="disposisi_surat[]" class="form-control @error('disposisi_surat') is-invalid @enderror" multiple="multiple" id="selectDisposisiSurat">
                             <option value="">-Pilih-</option>
                             @foreach ($jabatans as $jabatan)
                             <option value="{{ $jabatan->id }}" @if (@old('akses_surat') == $jabatan->id) selected @endif>{{ $jabatan->nama }}</option>
@@ -129,7 +129,7 @@
 @push('js')
 <script>
     $(document).ready(function() {
-        $('#selectAksesSurat').select2({
+        $('#selectDisposisiSurat').select2({
             theme: 'bootstrap4',
             placeholder: '-Pilih-',
             allowClear: true

@@ -61,9 +61,9 @@
                 </p>
                 <hr>
 
-                <strong><i class="fas fa-tags mr-1"></i> Akses Surat</strong>
+                <strong><i class="fas fa-tags mr-1"></i> Disposisi Surat</strong>
                 <p class="text-muted">
-                    @foreach($surat_masuk->akses_surat_masuk as $as)
+                    @foreach($surat_masuk->disposisi_surat_masuk as $as)
                         <span class="badge badge-primary mr-1">{{ $as->jabatan->nama }}</span>
                     @endforeach
                 </p>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AksesSuratKeluar;
+use App\Models\DisposisiSuratKeluar;
 use App\Models\FileSuratKeluar;
 use App\Models\Jabatan;
 use App\Models\SuratKeluar;
@@ -18,7 +19,7 @@ class SuratKeluarController extends Controller
 {
     public function index()
     {
-        $surat_keluar = SuratKeluar::with('file_surat_keluar','akses_surat_keluar')->orderBy('id','DESC')->get();
+        $surat_keluar = SuratKeluar::with('file_surat_keluar','disposisi_surat_keluar')->orderBy('id','DESC')->get();
         return view('admin.surat-keluar.index',compact('surat_keluar'));
     }
 
@@ -38,7 +39,7 @@ class SuratKeluarController extends Controller
             "nama_surat" => ["required"],
             "ditujukan_kepada" => ["required"],
             "tanggal_surat" => ["required"],
-            "akses_surat" => ["required"],
+            "disposisi_surat" => ["required"],
             "tanggal_keluar" => ["required"],
             "files" => ['required'],
             "files.*" => ['required', 'mimes:jpg,jpeg,png,pdf,docx,docs,xlsx,csv,ppt,pptx,heic', 'max:4096'],
@@ -62,12 +63,12 @@ class SuratKeluarController extends Controller
                 "status_approve" => 'Prosess',
                 "perihal" => $request->perihal,
             ]);
-            if($request->akses_surat){
-                $akses_surats = $request->akses_surat;
-                foreach($akses_surats as $akses_surat){
-                    AksesSuratKeluar::create([
+            if($request->disposisi_surat){
+                $disposisi_surats = $request->disposisi_surat;
+                foreach($disposisi_surats as $disposisi_surat){
+                    DisposisiSuratKeluar::create([
                         'surat_keluar_id' => $surat_keluar->id,
-                        'jabatan_id' => $akses_surat,
+                        'jabatan_id' => $disposisi_surat,
                     ]);
                 }
             }
@@ -96,7 +97,7 @@ class SuratKeluarController extends Controller
 
     public function show($id)
     {
-        $surat_keluar = SuratKeluar::with('file_surat_keluar','akses_surat_keluar')->whereId($id)->first();
+        $surat_keluar = SuratKeluar::with('file_surat_keluar','disposisi_surat_keluar')->whereId($id)->first();
         return view('admin.surat-keluar.detail', compact('surat_keluar'));
     }
 
@@ -127,13 +128,13 @@ class SuratKeluarController extends Controller
                 "tanggal_keluar" => $request->tanggal_keluar,
                 "perihal" => $request->perihal,
             ]);
-            if($request->akses_surat){
-                $akses_surats = $request->akses_surat;
-                foreach ($akses_surats as  $akses_surat) {
-                    if(! AksesSuratKeluar::where('surat_keluar_id',$id)->where('jabatan_id',$akses_surat)->first()){
-                        AksesSuratKeluar::create([
+            if($request->disposisi_surat){
+                $disposisi_surats = $request->disposisi_surat;
+                foreach ($disposisi_surats as  $disposisi_surat) {
+                    if(! DisposisiSuratKeluar::where('surat_keluar_id',$id)->where('jabatan_id',$disposisi_surat)->first()){
+                        DisposisiSuratKeluar::create([
                             'surat_keluar_id' => $id,
-                            'jabatan_id' => $akses_surat,
+                            'jabatan_id' => $disposisi_surat,
                         ]);
                     }
                 }
@@ -150,7 +151,7 @@ class SuratKeluarController extends Controller
     {
         $surat_keluar = SuratKeluar::whereId($id)->first();
         $file_surat_keluar = FileSuratKeluar::where('surat_keluar_id',$id)->get();
-        $akses_surat_keluar = AksesSuratKeluar::where('surat_keluar_id',$id)->get();
+        $disposisi_surat_keluar = DisposisiSuratKeluar::where('surat_keluar_id',$id)->get();
         $folder_db = $file_surat_keluar->first();
         $content_cloud_storage = collect(Storage::disk('google')->listContents('/',false));
 
@@ -166,8 +167,8 @@ class SuratKeluarController extends Controller
                 FileSuratKeluar::where('surat_keluar_id',$id)->first()->delete();
             }
         }
-        foreach ($akses_surat_keluar as $ask) {
-            AksesSuratKeluar::where('surat_keluar_id',$id)->first()->delete();
+        foreach ($disposisi_surat_keluar as $ask) {
+            DisposisiSuratKeluar::where('surat_keluar_id',$id)->first()->delete();
         }
         $del_surat_keluar_local_db = $surat_keluar->delete();
         if($del_surat_keluar_local_db){
@@ -235,12 +236,12 @@ class SuratKeluarController extends Controller
         return back()->with('success', 'File surat keluar berhasil ditambahkan!');
     }
 
-    public function delete_akses($suratkeluar,$aksessurat)
+    public function delete_disposisi($suratkeluar,$disposisisurat)
     {
-        $akses_surat_keluar = AksesSuratKeluar::with('jabatan')->where('surat_keluar_id',$suratkeluar)->where('jabatan_id',$aksessurat)->first();
-        if($akses_surat_keluar){
-            $akses_surat_keluar->delete();
-            return back()->with('success','Akses surat berhasil dihapus!');
+        $disposisi_surat_keluar = DisposisiSuratKeluar::with('jabatan')->where('surat_keluar_id',$suratkeluar)->where('jabatan_id',$disposisisurat)->first();
+        if($disposisi_surat_keluar){
+            $disposisi_surat_keluar->delete();
+            return back()->with('success','Disposisi surat berhasil dihapus!');
         }else{
             return back()->with('error','Data tidak ditemukan!');
         }

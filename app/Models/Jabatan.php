@@ -17,13 +17,13 @@ class Jabatan extends Model
         return $this->hasMany(User::class);
     }
 
-    public function akses_surat_masuk()
+    public function disposisi_surat_masuk()
     {
-        return $this->hasMany(AksesSuratMasuk::class);
+        return $this->hasMany(DisposisiSuratMasuk::class);
     }
 
-    public function akses_surat_keluar()
+    public function disposisi_surat_keluar()
     {
-        return $this->hasMany(AksesSuratKeluar::class);
+        return $this->hasMany(DisposisiSuratKeluar::class);
     }
 }

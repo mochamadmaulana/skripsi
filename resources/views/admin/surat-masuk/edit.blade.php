@@ -44,21 +44,21 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Akses Surat <span class="text-red">*</span></label><br>
-                        @foreach ($surat_masuk->akses_surat_masuk as $asm)
-                        @if (count($surat_masuk->akses_surat_masuk) > 1)
-                        <span class="badge badge-primary mr-1 mb-2"><a href="{{ url('admin/surat-masuk/'.$surat_masuk->id.'/akses-surat/'.$asm->jabatan_id.'/delete') }}" onclick="return confirm('Yakin, untuk menghapus akses {{ $asm->jabatan->nama }} ?')" class="badge badge-danger mr-1"><i class="fas fa-times"></i></a> {{ $asm->jabatan->nama }}</span>
+                        <label>Disposisi Surat <span class="text-red">*</span></label><br>
+                        @foreach ($surat_masuk->disposisi_surat_masuk as $asm)
+                        @if (count($surat_masuk->disposisi_surat_masuk) > 1)
+                        <span class="badge badge-primary mr-1 mb-2"><a href="{{ url('admin/surat-masuk/'.$surat_masuk->id.'/disposisi-surat/'.$asm->jabatan_id.'/delete') }}" onclick="return confirm('Yakin, untuk menghapus disposisi {{ $asm->jabatan->nama }} ?')" class="badge badge-danger mr-1"><i class="fas fa-times"></i></a> {{ $asm->jabatan->nama }}</span>
                         @else
                         <span class="badge badge-primary mr-1 mb-2">{{ $asm->jabatan->nama }}</span>
                         @endif
                         @endforeach
-                        <select name="akses_surat[]" class="form-control @error('akses_surat') is-invalid @enderror" multiple="multiple" id="selectAksesSurat">
+                        <select name="disposisi_surat[]" class="form-control @error('disposisi_surat') is-invalid @enderror" multiple="multiple" id="selectDisposisiSurat">
                             <option value="">-Pilih-</option>
                             @foreach ($jabatans as $jabatan)
-                            <option value="{{ $jabatan->id }}" @if (@old('akses_surat') == $jabatan->id) selected @endif>{{ $jabatan->nama }}</option>
+                            <option value="{{ $jabatan->id }}" @if (@old('disposisi_surat') == $jabatan->id) selected @endif>{{ $jabatan->nama }}</option>
                             @endforeach
                         </select>
-                        @error('akses_surat')
+                        @error('disposisi_surat')
                             <div class="invalid-feedback">
                                 <span class="text-danger">{{ $message }}</span>
                             </div>
@@ -185,7 +185,7 @@
 @push('js')
 <script>
     $(document).ready(function() {
-        $('#selectAksesSurat').select2({
+        $('#selectDisposisiSurat').select2({
             theme: 'bootstrap4',
             placeholder: '-Pilih',
             allowClear: true,

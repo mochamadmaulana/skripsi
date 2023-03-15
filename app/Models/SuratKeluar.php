@@ -24,8 +24,8 @@ class SuratKeluar extends Model
         return $this->hasMany(FileSuratKeluar::class);
 
     }
-    public function akses_surat_keluar()
+    public function disposisi_surat_keluar()
     {
-        return $this->hasMany(AksesSuratKeluar::class);
+        return $this->hasMany(DisposisiSuratKeluar::class);
     }
 }

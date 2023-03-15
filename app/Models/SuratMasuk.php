@@ -23,8 +23,8 @@ class SuratMasuk extends Model
         return $this->hasMany(FileSuratMasuk::class);
     }
 
-    public function akses_surat_masuk()
+    public function disposisi_surat_masuk()
     {
-        return $this->hasMany(AksesSuratMasuk::class);
+        return $this->hasMany(DisposisiSuratMasuk::class);
     }
 }

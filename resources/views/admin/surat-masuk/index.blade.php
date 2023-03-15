@@ -20,7 +20,7 @@
                             <th>Pengirim</th>
                             <th>Tanggal Surat</th>
                             <th>Tanggal Diterima</th>
-                            <th>Akses Surat</th>
+                            <th>Disposisi Surat</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -34,7 +34,7 @@
                             <td>{{  \Carbon\Carbon::parse($val->tanggal_surat)->translatedFormat('d F Y') }}</td>
                             <td>{{  \Carbon\Carbon::parse($val->tanggal_diterima)->translatedFormat('d F Y') }}</td>
                             <td>
-                                @foreach ($val->akses_surat_masuk as $item)
+                                @foreach ($val->disposisi_surat_masuk as $item)
                                     <span class="badge badge-primary">{{ $item->jabatan->nama }}</span>
                                 @endforeach
                             </td>

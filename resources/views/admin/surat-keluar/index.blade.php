@@ -21,7 +21,7 @@
                             <th>Tanggal Surat</th>
                             <th>Tanggal Keluar</th>
                             <th>Status Approve</th>
-                            <th>Akses Surat</th>
+                            <th>Disposisi Surat</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -44,7 +44,7 @@
                                 @endif
                             </td>
                             <td>
-                                @foreach ($val->akses_surat_keluar as $item)
+                                @foreach ($val->disposisi_surat_keluar as $item)
                                     <span class="badge badge-primary">{{ $item->jabatan->nama }}</span>
                                 @endforeach
                             </td>

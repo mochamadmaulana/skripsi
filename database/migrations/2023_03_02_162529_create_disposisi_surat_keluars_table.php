@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAksesSuratMasuksTable extends Migration
+class CreateDisposisiSuratKeluarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateAksesSuratMasuksTable extends Migration
      */
     public function up()
     {
-        Schema::create('akses_surat_masuks', function (Blueprint $table) {
+        Schema::create('disposisi_surat_keluars', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('surat_masuk_id');
+            $table->foreignId('surat_keluar_id');
             $table->foreignId('jabatan_id');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateAksesSuratMasuksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('akses_surat_masuks');
+        Schema::dropIfExists('disposisi_surat_keluars');
     }
 }

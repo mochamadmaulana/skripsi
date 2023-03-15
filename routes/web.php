@@ -35,12 +35,12 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::resource('surat-masuk', \App\Http\Controllers\Admin\SuratMasukController::class);
-        Route::get('surat-masuk/{suratmasuk}/akses-surat/{aksessurat}/delete', [\App\Http\Controllers\Admin\SuratMasukController::class, 'delete_akses']);
+        Route::get('surat-masuk/{suratmasuk}/disposisi-surat/{disposisisurat}/delete', [\App\Http\Controllers\Admin\SuratMasukController::class, 'delete_disposisi']);
         Route::get('surat-masuk/delete-file/{id}', [\App\Http\Controllers\Admin\SuratMasukController::class, 'delete_file'])->name('delete-file-surat-masuk');
         Route::post('surat-masuk/add-file/{id}', [\App\Http\Controllers\Admin\SuratMasukController::class, 'add_file'])->name('add-file-surat-masuk');
 
         Route::resource('surat-keluar', \App\Http\Controllers\Admin\SuratKeluarController::class);
-        Route::get('surat-keluar/{suratkeluar}/akses-surat/{aksessurat}/delete', [\App\Http\Controllers\Admin\SuratKeluarController::class, 'delete_akses']);
+        Route::get('surat-keluar/{suratkeluar}/disposisi-surat/{disposisisurat}/delete', [\App\Http\Controllers\Admin\SuratKeluarController::class, 'delete_disposisi']);
         Route::get('surat-keluar/delete-file/{id}', [\App\Http\Controllers\Admin\SuratKeluarController::class, 'delete_file'])->name('delete-file-surat-keluar');
         Route::post('surat-keluar/add-file/{id}', [\App\Http\Controllers\Admin\SuratKeluarController::class, 'add_file'])->name('add-file-surat-keluar');
 
